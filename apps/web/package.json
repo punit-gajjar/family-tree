@@ -1,0 +1,52 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "3.9.1",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@tanstack/react-query": "^5.90.12",
+    "@types/dagre": "^0.7.53",
+    "@xyflow/react": "^12.10.0",
+    "axios": "^1.13.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "dagre": "^0.8.5",
+    "framer-motion": "^12.23.25",
+    "html-to-image": "^1.11.13",
+    "lucide-react": "^0.556.0",
+    "react": "^19.2.0",
+    "react-datepicker": "^9.0.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.68.0",
+    "react-router-dom": "^7.10.1",
+    "tailwind-merge": "^3.4.0",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-datepicker": "^6.2.0",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "10.4.20",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4"
+  }
+}

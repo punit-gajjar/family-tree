@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      String   @default("VIEWER") // ADMIN, EDITOR, VIEWER
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Member {
+  id            Int       @id @default(autoincrement())
+  firstName     String
+  lastName      String
+  imageUrl      String?
+  dob           DateTime?
+  aadharNumber  String?   // Store encrypted or masked if possible, strictly string for now
+  nativePlace   String?
+  address       String?   @db.Text
+  gender        String?
+  contactNumber String?
+  notes         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  outgoingEdges RelationshipEdge[] @relation("FromMember")
+  incomingEdges RelationshipEdge[] @relation("ToMember")
+
+  @@map("members")
+}
+
+model RelationMaster {
+  id              Int     @id @default(autoincrement())
+  code            String  @unique // FATHER, MOTHER, SPOUSE
+  label           String
+  isSpousal       Boolean @default(false)
+  isParental      Boolean @default(false)
+  isBidirectional Boolean @default(false)
+  inverseCode     String? // Code of the inverse relation
+
+  edges RelationshipEdge[]
+
+  @@map("relation_masters")
+}
+
+model RelationshipEdge {
+  id           Int @id @default(autoincrement())
+  fromMemberId Int
+  toMemberId   Int
+  relationId   Int
+
+  fromMember Member         @relation("FromMember", fields: [fromMemberId], references: [id], onDelete: Cascade)
+  toMember   Member         @relation("ToMember", fields: [toMemberId], references: [id], onDelete: Cascade)
+  relation   RelationMaster @relation(fields: [relationId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([fromMemberId, toMemberId, relationId]) // Prevent duplicate specific edges
+  @@map("relationship_edges")
+}
