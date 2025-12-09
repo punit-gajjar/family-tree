@@ -276,7 +276,7 @@ Punit Gajjar - [@punit-gajjar](https://github.com/punit-gajjar)
 
 ## 📞 Support
 
-For support, email punit.gajjar@email.com or open an issue in the repository.
+For support, email punit.gajjar@gmail.com or open an issue in the repository.
 
 ---
 
